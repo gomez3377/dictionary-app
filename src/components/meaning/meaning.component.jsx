@@ -18,7 +18,7 @@ const Meaning = ({ meaning }) => {
         <h4>Synonyms</h4>
         <ul>
           {synonyms.map((synonym) => (
-            <li>{synonym}</li>
+            <li key={nanoid()}>{synonym}</li>
           ))}
         </ul>
       </div>

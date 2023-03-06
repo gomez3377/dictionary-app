@@ -1,22 +1,27 @@
-import { useContext } from 'react'
+import { useContext } from "react";
 
-import { DictionaryContext } from '../../context/dictionary.context'
-import { nanoid } from 'nanoid'
+import { DictionaryContext } from "../../context/dictionary.context";
+import { nanoid } from "nanoid";
 
-import WordCard from '../word-card/word-card.component'
+import WordCard from "../word-card/word-card.component";
+import Error from "../error/error.component";
 
 const Definition = () => {
-    const {definition} = useContext(DictionaryContext)
+    const { definition } = useContext(DictionaryContext);
 
-    
-    
   return (
     <>
-       { definition &&
-       definition.map(word => <WordCard searchedWord={word} key={nanoid()} />)}
-
+      {definition &&
+  (Array.isArray(definition) 
+    ? definition.map((result) => (
+   <WordCard result={result} key={nanoid()} />
+   )
+   )
+   : (<Error result={definition}/>)
+   
+   ) }
     </>
-  )
-}
+  );
+};
 
-export default Definition
+export default Definition;
